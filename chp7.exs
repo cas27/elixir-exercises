@@ -19,4 +19,10 @@ defmodule Chp7 do
     max([head2 | tail])
   end
 
+  def span(from, to) when from < to do
+    [from | span(from+1, to)]
+  end
+
+  def span(from, from), do: [from]
+
 end
