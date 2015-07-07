@@ -6,4 +6,10 @@ defmodule Chp10 do
       :else -> false
     end
   end
+
+  def each([],_), do: :ok
+  def each([head | tail], func) do
+    func.(head)
+    each(tail, func)
+  end
 end
