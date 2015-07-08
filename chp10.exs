@@ -1,4 +1,6 @@
 defmodule Chp10 do
+  import Chp7
+
   def all?([], _func), do: true
   def all?([head | tail], func \\ fn x -> x end) do
     cond do
@@ -31,6 +33,14 @@ defmodule Chp10 do
   def take([h], 1), do: [h]
   def take([head | tail], count) do
     [head | take(tail, count-1)]
+  end
+
+  def prime(n) do
+    for x <- Chp7.span(2,n), is_prime?(x), do: x
+  end
+
+  def is_prime?(num) do
+    Enum.all? 2..num-1, &(rem(num,&1) != 0)
   end
 
 end
