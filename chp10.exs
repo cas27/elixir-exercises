@@ -12,4 +12,12 @@ defmodule Chp10 do
     func.(head)
     each(tail, func)
   end
+
+  def filter([], _, acc), do: List.flatten(acc)
+  def filter([head | tail], func, acc \\ []) do
+    cond do
+      func.(head) == true -> filter(tail, func, acc ++ [head] )
+      :else -> filter(tail, func, [acc])
+    end
+  end
 end
