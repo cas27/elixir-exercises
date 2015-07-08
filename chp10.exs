@@ -25,4 +25,12 @@ defmodule Chp10 do
   def split([head | tail], count, acc \\ []) do
     split(tail, count - 1, [head | acc])
   end
+
+  def take(_, 0), do: []
+  def take([], _), do: []
+  def take([h], 1), do: [h]
+  def take([head | tail], count) do
+    [head | take(tail, count-1)]
+  end
+
 end
