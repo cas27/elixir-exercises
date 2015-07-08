@@ -20,4 +20,9 @@ defmodule Chp10 do
       :else -> filter(tail, func, [acc])
     end
   end
+
+  def split(list, 0, acc), do: {Enum.reverse(acc), list}
+  def split([head | tail], count, acc \\ []) do
+    split(tail, count - 1, [head | acc])
+  end
 end
