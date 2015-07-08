@@ -43,4 +43,20 @@ defmodule Chp10 do
     Enum.all? 2..num-1, &(rem(num,&1) != 0)
   end
 
+  def taxed_orders do
+    tax_rates = [NC: 0.075, TX: 0.08]
+    orders = [
+      [id: 123, ship_to: :NC, net_amount: 100.00],
+      [id: 124, ship_to: :OK, net_amount: 35.50],
+      [id: 125, ship_to: :TX, net_amount: 24.00],
+      [id: 126, ship_to: :TX, net_amount: 44.80]
+    ]
+
+    for [{:id, id}, {:ship_to, state}, {:net_amount, na}] <- orders,
+    state == :NC || state == :TX,
+    do: [
+      id: id, ship_to: state, net_amount: na, total_amount: na * tax_rates[state] + na
+    ]
+  end
+
 end
