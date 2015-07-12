@@ -2,7 +2,7 @@ defmodule Fred do
   def name do
     receive do
       {sender, _} ->
-        send sender, {:ok, "Fred"}
+        send sender, "Fred"
     end
   end
 end
@@ -11,7 +11,7 @@ defmodule Betty do
   def name do
     receive do
       {sender, _} ->
-        send sender, {:ok, "Betty"}
+        send sender, "Betty"
     end
   end
 end
@@ -23,9 +23,9 @@ send betty, {self, "Name?"}
 send fred, {self, "Name?"}
 
 receive do
-  {:ok, name} -> IO.puts "Your name is #{name}"
-end
-
-receive do
-  {:ok, name} -> IO.puts "Your name is #{name}"
+  name when name == "Betty" ->
+    IO.puts "Your name is Betty"
+    receive do
+        name -> IO.puts "Your name is #{name}"
+    end
 end
