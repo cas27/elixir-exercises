@@ -1,8 +1,8 @@
-defmodule Stack.Mixfile do
+defmodule SupSequence.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :stack,
+    [app: :sup_sequence,
      version: "0.0.1",
      elixir: "~> 1.0",
      build_embedded: Mix.env == :prod,
@@ -14,7 +14,8 @@ defmodule Stack.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [applications: [:logger], mod: {Stack, []}]
+    [applications: [:logger],
+     mod: {SupSequence, []}]
   end
 
   # Dependencies can be Hex packages:
